@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Placeholder so `prisma generate` has a model to work with until the
+// first domain entities land in a later ticket. Not used by application
+// code — the health check runs a raw query instead.
+model HealthCheckPlaceholder {
+  id Int @id @default(autoincrement())
+}

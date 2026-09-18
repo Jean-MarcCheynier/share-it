@@ -1,8 +1,17 @@
 # Nestjs specific
-/dist
-/node_modules
-/build
-/tmp
+dist/
+node_modules/
+build/
+tmp/
+
+# Turborepo
+.turbo/
+
+# Prisma
+apps/api/prisma/migrations/dev.db*
+
+# Vite
+apps/web/dist/
 
 # Logs
 logs
