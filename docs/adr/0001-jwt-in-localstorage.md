@@ -2,10 +2,10 @@
 status: accepted
 ---
 
-# JWT stocké en localStorage plutôt qu'en cookie httpOnly
+# Store the JWT in localStorage rather than an httpOnly cookie
 
-L'authentification repose sur un JWT (access token courte durée + refresh token), stocké côté client en `localStorage` plutôt que dans un cookie httpOnly. Un cookie httpOnly aurait protégé le token contre le vol par XSS, au prix d'une gestion CSRF et d'une portabilité moindre vers un futur client non-navigateur (app mobile). On accepte le risque XSS pour la V0 en échange d'une implémentation plus simple (pas de config cookie cross-origin, pas de protection CSRF à mettre en place) et d'un modèle `Authorization: Bearer` qui se transposera directement à une éventuelle app mobile.
+Authentication relies on a JWT (short-lived access token + refresh token), stored client-side in `localStorage` rather than in an httpOnly cookie. An httpOnly cookie would have protected the token from theft via XSS, at the cost of CSRF handling and reduced portability toward a future non-browser client (mobile app). We accept the XSS risk for V0 in exchange for a simpler implementation (no cross-origin cookie configuration, no CSRF protection to build) and an `Authorization: Bearer` model that will translate directly to a future mobile app.
 
 ## Consequences
 
-Toute vulnérabilité XSS dans le frontend expose directement les tokens d'authentification. La discipline de sanitization des entrées utilisateurs (notamment dans l'affichage des noms de bibliothèques, titres de livres, etc.) devient donc critique et ne doit pas être traitée comme un détail secondaire.
+Any XSS vulnerability in the frontend directly exposes authentication tokens. Input sanitization discipline (especially when rendering library names, book titles, etc.) therefore becomes critical and must not be treated as a secondary concern.
